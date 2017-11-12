@@ -33,16 +33,6 @@ public class Jugador {
    }
     public void setScore(int cont){
     this.Score = cont;
-//    public void setScore(int cont){
-//    if(cont == 2){
-//    this.Score+=350;}
-//    if(cont == 1){
-//    this.Score+=400;
-//    }
-//    if(cont==0){
-//    this.Score += 500;
-//    }
-//    }
     }
 
     public int getID() {
