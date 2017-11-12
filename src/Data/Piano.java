@@ -18,11 +18,11 @@ public class Piano {
     
     
     public Piano() throws MalformedURLException{
-        String[] A = {"C","D","E","F","G","A","B"};
+        String[] A = {"C","D","E","F","G","A","B"}; 
+        this.Teclas = new ArrayList<>();
         for(int i = 0; i < 7; i++){
             addTecla(A[i]);
         }
-        this.Teclas = new ArrayList<>();
         this.Tipo = "Piano1.png";
     }
     public void addTecla(String Nota) throws MalformedURLException{
@@ -34,7 +34,14 @@ public class Piano {
     public String getTipo() {
         return Tipo;
     }
-    
-    
-    
+
+    public Tecla getTecla(String Nombre) {
+        Tecla t = null;
+        for(Tecla a : this.Teclas){
+            if(a.getNota().getNombre().equals(Nombre)){
+            t = a;
+            }
+        }
+        return t;
+    }  
 }

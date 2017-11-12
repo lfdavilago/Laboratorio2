@@ -6,8 +6,11 @@
 package GUI;
 
 import Data.Piano;
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.Point;
+import java.awt.Rectangle;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.net.MalformedURLException;
@@ -21,9 +24,9 @@ import javax.swing.JPanel;
 public class Board extends JPanel implements MouseListener{
 
     private Piano piano;
-    
     public Board() throws MalformedURLException{
-    //piano = new Piano();
+    piano = new Piano();
+    this.addMouseListener(this);
     }
     
     
@@ -31,42 +34,78 @@ public class Board extends JPanel implements MouseListener{
       public void paintComponent(Graphics g) {
         super.paintComponent(g);
         
-        //dibujarPiano(g);
+        dibujarPiano(g);
     }
     
     public void dibujarPiano(Graphics g){
-//       String Direccion = this.piano.getTipo();
-//       Image Piano = loadImage(Direccion);
-//       g.drawImage(Piano, WIDTH, WIDTH, this);
+       String Direccion = this.piano.getTipo();
+       Image Piano = loadImage(Direccion);
+       g.drawImage(Piano,0,0, this);
+//       g.setColor(Color.yellow);
+//       g.drawRect(29,0,59, 245);
+//       g.drawRect(88,0, 59, 245);
+//        g.drawRect(147,0,59, 245);
+//       g.drawRect(206,0, 59, 245);
+//        g.drawRect(265,0,59, 245);
+//       g.drawRect(324,0, 59, 245);
+//       g.drawRect(383,0, 59, 245);
        
     }
     
     
-    
+    public Rectangle[] getTeclas(){
+    Rectangle[] a = new Rectangle[7];
+        int cont = 29;   
+        for(int i = 0 ; i < 7 ; i++){
+        a[i] = new Rectangle(cont,0,59,245);
+        cont+=59;
+        }
+    return a;
+    }
     
     @Override
     public void mouseClicked(MouseEvent me) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+      Rectangle[] a = getTeclas();
+      Point mp = me.getPoint();
+      int cont = 0;
+        for(Rectangle s : a){
+            
+        if(s.contains(mp)){
+            String Nota= null;
+            if(cont == 0){Nota = "C";}
+            if(cont == 1){Nota = "D";}
+            if(cont == 2){Nota = "E";}
+            if(cont == 3){Nota = "F";}
+            if(cont == 4){Nota = "G";}
+            if(cont == 5){Nota = "A";}
+            if(cont == 6){Nota = "B";}
+        this.piano.getTecla(Nota).getNota().getSonido().play();
+        }
+        cont ++;
+        }
     }
+
 
     @Override
     public void mousePressed(MouseEvent me) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       
+        
     }
 
     @Override
     public void mouseReleased(MouseEvent me) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+      
     }
 
     @Override
     public void mouseEntered(MouseEvent me) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       
     }
 
     @Override
     public void mouseExited(MouseEvent me) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+     
+        
     }
      
    public Image loadImage(String imageName) {

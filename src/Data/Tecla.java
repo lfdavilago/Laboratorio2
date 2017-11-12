@@ -20,4 +20,9 @@ public class Tecla {
     public void Push(){
     this.nota.getSonido().play();
     }
+
+    public Nota getNota() {
+        return nota;
+    }
+    
 }

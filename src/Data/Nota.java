@@ -15,7 +15,7 @@ import java.net.URL;
  * @author acer
  */
 public class Nota {
-    private String Nombre; // El nombre de la nota es en notacion musical Ej: M = mi ; B = si ; G = sol ; D = re ; C = do F = fa; A = la 
+    private String Nombre; // El nombre de la nota es en notacion musical Ej: E = mi ; B = si ; G = sol ; D = re ; C = do F = fa; A = la 
     private URL fc;                     // El nombre se utiliza para identificar el tipo de sonido
     private AudioClip Sonido; // Por Ahora lo guardo como un String porque no se como guardar sonidos
     

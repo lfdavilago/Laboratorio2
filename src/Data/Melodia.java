@@ -15,9 +15,19 @@ public class Melodia {
     private String nombre;
     private ArrayList<Nota> Partitura;
     
-    public Melodia(){
-    this.Partitura = new ArrayList<>();
-    
+    public Melodia(String Nombre, ArrayList<Nota> d)
+    {
+    this.nombre = Nombre;
+    this.Partitura = d;
     }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public ArrayList<Nota> getPartitura() {
+        return Partitura;
+    }
+    
     
 }
