@@ -35,6 +35,10 @@ public class Jugador {
     this.Score = cont;
     }
 
+    public int getScore() {
+        return Score;
+    }
+
     public int getID() {
         return ID;
     }

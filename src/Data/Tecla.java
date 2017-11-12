@@ -17,8 +17,9 @@ public class Tecla {
     this.nota = nota;
     }
     
-    public void Push(){
+    public String Push(){
     this.nota.getSonido().play();
+    return this.nota.getNombre();
     }
 
     public Nota getNota() {

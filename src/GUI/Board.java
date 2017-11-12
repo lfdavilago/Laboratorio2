@@ -14,6 +14,7 @@ import java.awt.Rectangle;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.net.MalformedURLException;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
@@ -24,9 +25,11 @@ import javax.swing.JPanel;
 public class Board extends JPanel implements MouseListener{
 
     private Piano piano;
+    private int cantidad;
     public Board() throws MalformedURLException{
     piano = new Piano();
     this.addMouseListener(this);
+    this.cantidad = 0;
     }
     
     
@@ -80,11 +83,16 @@ public class Board extends JPanel implements MouseListener{
             if(cont == 5){Nota = "A";}
             if(cont == 6){Nota = "B";}
         this.piano.getTecla(Nota).getNota().getSonido().play();
+        //this.piano.saveMemeriaVolatil(Nota);
+        for(String p : this.piano.getMemoriaVolatil()){
+            System.out.print("                   "+p);
+        }
+            System.out.println("");
+        this.cantidad ++;
         }
         cont ++;
         }
     }
-
 
     @Override
     public void mousePressed(MouseEvent me) {
@@ -113,8 +121,18 @@ public class Board extends JPanel implements MouseListener{
         Image image = ii.getImage();
         return image;
     }
+
+    public Piano getPiano() {
+        return piano;
+    }
+   
+    public int getCantidad(){
+    return this.cantidad;
+    }
     
-    
+    public void resetCantidad(){
+    this.cantidad = 0;
+    }
     
     
 }

@@ -16,9 +16,12 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 import javax.swing.Timer;
 import pianoplay.Logic;
@@ -30,10 +33,15 @@ import pianoplay.SongReader;
  * @author acer
  */
 public class Applet extends JFrame implements ActionListener{
+    private Board piano ;
     private Timer time ;  
     private JMenuItem Menu, menu2,menu3;
     private JMenu menuss;
     private JMenuBar bar;
+    private JLabel Vidas;
+    private JLabel Nivel;
+    private JLabel Score;
+    
     public Applet() throws MalformedURLException {
        initUI();
     }
@@ -41,7 +49,9 @@ public class Applet extends JFrame implements ActionListener{
     private void initUI() throws MalformedURLException {
        
         this.time = new Timer(1000,this);
-        
+        this.Score = new JLabel("Score : " + 0);
+        this.Vidas = new JLabel("VIDAS : " + 3);
+        this.Nivel = new JLabel("Nivel : " + 1);
         this.bar = new JMenuBar();
         this.Menu = new JMenuItem("OnlyPlayer");
         this.Menu.addActionListener(this);
@@ -49,6 +59,7 @@ public class Applet extends JFrame implements ActionListener{
         this.menu2.addActionListener(this);
         this.menu3 = new JMenuItem("Salir");
         this.menu3.addActionListener(this);
+        
         this.menuss = new JMenu("Menu");
         
         this.setMenuBar(null);
@@ -56,16 +67,19 @@ public class Applet extends JFrame implements ActionListener{
         this.menuss.add(menu2);
         this.menuss.add(menu3);
         this.bar.add(menuss);
-      
+        this.bar.add(this.Nivel);
+        this.bar.add(this.Vidas);
+        this.bar.add(this.Score);
+        this.piano = new Board();
 
-        setSize(600, 400);
+        setSize(500, 392);
         setTitle("PIANOGAME");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setLayout(new BorderLayout());
-        add(new Board(), BorderLayout.CENTER);
+        add(this.piano, BorderLayout.CENTER);
 //        add(new Menu(), BorderLayout.WEST);
-        add(this.bar, BorderLayout.EAST);
+        add(this.bar, BorderLayout.NORTH);
     }    
     
    
@@ -75,10 +89,7 @@ public class Applet extends JFrame implements ActionListener{
        Container f = this.getContentPane();
        if(ae.getSource() == this.Menu){
            System.out.println("JUGAR CON LA MAQUINA");
-            Logic logic = new Logic();
-            logic.crearJugador(1);
-    this.time.start();
-            
+            Logic logic = new Logic(this.getPiano(), this);
            try {
                logic.PvsPc(new SongReader());
            } catch (InterruptedException ex) {
@@ -93,6 +104,22 @@ public class Applet extends JFrame implements ActionListener{
        }
     }
 
+    public Board getPiano() {
+        return piano;
+    }
 
+    public void Lose(){
+    JOptionPane.showMessageDialog(null,"YOU LOSE!!!");
+    }
+    public void actualizarPantalla(int a, int b, int i){
+        if(i == 0){
+  this.Score.setText("SCORE : "+b);    
+        }
+        
+        
+        if(i==1){
+        this.Vidas.setText("VIDAS : "+a);
+        }
+    }
 }
 
