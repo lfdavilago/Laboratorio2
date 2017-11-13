@@ -54,7 +54,7 @@ public class Piano {
     this.MemoriaVolatil.remove(Nota);
     }
     public void cleanMemoriaVolatil(){
-    this.MemoriaVolatil.clear();
+    this.MemoriaVolatil = new ArrayList<>();
     }
 
     public ArrayList<String> getMemoriaVolatil() {

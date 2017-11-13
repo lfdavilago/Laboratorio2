@@ -44,14 +44,7 @@ public class Board extends JPanel implements MouseListener{
        String Direccion = this.piano.getTipo();
        Image Piano = loadImage(Direccion);
        g.drawImage(Piano,0,0, this);
-//       g.setColor(Color.yellow);
-//       g.drawRect(29,0,59, 245);
-//       g.drawRect(88,0, 59, 245);
-//        g.drawRect(147,0,59, 245);
-//       g.drawRect(206,0, 59, 245);
-//        g.drawRect(265,0,59, 245);
-//       g.drawRect(324,0, 59, 245);
-//       g.drawRect(383,0, 59, 245);
+
        
     }
     
@@ -83,7 +76,7 @@ public class Board extends JPanel implements MouseListener{
             if(cont == 5){Nota = "A";}
             if(cont == 6){Nota = "B";}
         this.piano.getTecla(Nota).getNota().getSonido().play();
-        //this.piano.saveMemeriaVolatil(Nota);
+      
         for(String p : this.piano.getMemoriaVolatil()){
             System.out.print("                   "+p);
         }
