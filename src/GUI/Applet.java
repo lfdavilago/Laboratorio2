@@ -187,6 +187,8 @@ public class Applet extends JFrame implements ActionListener{
     public int getOutPut1(){
     return Integer.parseInt(this.OutPut1);
     }
-
+    public void FinalGame(int Score){
+    JOptionPane.showMessageDialog(this, "FINAL DEL JUEGO, your Score :" + Score);
+    }
 }
 

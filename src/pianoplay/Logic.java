@@ -86,12 +86,16 @@ public class Logic extends Thread implements ActionListener{
           this.board.getPiano().cleanMemoriaVolatil();
    this.board.resetCantidad();
    ArrayList<Nota> Partitura = g.leerMelodia("Mpredeterminadas.txt",this.Nivel);
+   if(Partitura != null){
    Melodia melodia = new Melodia("d", Partitura);
   if(this.Jugadores.size() == 0){
    crearJugador(1);}
    Reproductor(melodia); 
    playTime(Partitura);
-        
+   }else{
+   this.aplet.FinalGame(this.Jugadores.get(0).getScore());
+   this.resetDataGame();
+   }
    }
    
    public void Reproductor(Melodia mp) throws InterruptedException{
