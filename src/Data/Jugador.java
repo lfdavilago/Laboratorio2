@@ -25,12 +25,19 @@ public class Jugador {
    this.Vidas--;
    setTurno();
    }
+   public void resetVidas(){
+   this.Vidas = 3;
+   }
+   public void setTurno1(boolean a){
+   this.Turno = a;
+   }
    
    public void setTurno(){
    if(this.Vidas==0){
    this.Turno = false;
    }
    }
+  
     public void setScore(int cont){
     this.Score = cont;
     }

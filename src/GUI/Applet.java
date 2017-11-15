@@ -35,29 +35,33 @@ import pianoplay.SongReader;
  * @author acer
  */
 public class Applet extends JFrame implements ActionListener{
+    // Atributos
     private Board piano ;
     private Timer time ;  
-    private JMenuItem Menu, menu2,menu3, menu4, option;
-    private JMenu menuss, Menu1 ;
-    private JMenuBar bar;
+    private JMenuItem Menu, menu2,menu3, menu4, option, option2;
+    private JMenu menuss;
     private JLabel Vidas;
     private JLabel Nivel;
     private JLabel Score;
     private String[] OutPut;
-    Logic logic;
+    private String OutPut1;
+    private Logic logic;
+    // Constructor
     public Applet() throws MalformedURLException {
        initUI();
     }
-
+    // Metodos
     private void initUI() throws MalformedURLException {
+        this.option2 = new JMenuItem("Continuar Juego");
+        this.option2.addActionListener(this);
         this.time = new Timer(1000,this);
         this.Score = new JLabel("Score : " + 0);
         this.Vidas = new JLabel("VIDAS : " + 3);
         this.Nivel = new JLabel("Nivel : " + 1);
-        this.bar = new JMenuBar();
+        JMenuBar bar = new JMenuBar();
         this.option = new JMenuItem("Continuar next level");
         this.option.addActionListener(this);
-        this.Menu1 = new JMenu("New Game");
+        JMenu Menu1 = new JMenu("New Game");
         this.Menu = new JMenuItem("OnlyPlayer");
         this.Menu.addActionListener(this);
         this.menu2 = new JMenuItem("Multiplayer");
@@ -69,15 +73,15 @@ public class Applet extends JFrame implements ActionListener{
         this.menuss = new JMenu("Menu");
         
         this.setMenuBar(null);
-        this.Menu1.add(Menu);
-        this.Menu1.add(menu2);
+        Menu1.add(Menu);
+        Menu1.add(menu2);
         this.menuss.add(Menu1);
         this.menuss.add(menu4);
         this.menuss.add(menu3);
-        this.bar.add(menuss);
-        this.bar.add(this.Nivel);
-        this.bar.add(this.Vidas);
-        this.bar.add(this.Score);
+        bar.add(menuss);
+        bar.add(this.Nivel);
+        bar.add(this.Vidas);
+        bar.add(this.Score);
         this.piano = new Board();
         this.logic = new Logic(this.getPiano(), this);
         setSize(500, 392);
@@ -87,11 +91,8 @@ public class Applet extends JFrame implements ActionListener{
         setLayout(new BorderLayout());
         add(this.piano, BorderLayout.CENTER);
 //        add(new Menu(), BorderLayout.WEST);
-        add(this.bar, BorderLayout.NORTH);
+        add(bar, BorderLayout.NORTH);
     }    
-    
-   
-
     @Override
     public void actionPerformed(ActionEvent ae) {
        Container f = this.getContentPane();
@@ -104,8 +105,17 @@ public class Applet extends JFrame implements ActionListener{
                Logger.getLogger(PianoPlay.class.getName()).log(Level.SEVERE, null, ex);
            }
        }
-        if(ae.getSource() == this.menu2){
-            System.out.println("JUGAR CON OTRO JUGADOR");    
+        if(ae.getSource() == this.menu2 || ae.getSource() == this.option2){
+            System.out.println("JUGAR CON OTRO JUGADOR");  
+    
+           try {
+               
+               this.logic.pMplayer(new SongReader());
+           } catch (InterruptedException ex) {
+               Logger.getLogger(Applet.class.getName()).log(Level.SEVERE, null, ex);
+           }
+            
+            
        }
          if(ae.getSource() == this.menu3){
              System.out.println("SALIR");
@@ -118,17 +128,14 @@ public class Applet extends JFrame implements ActionListener{
                logic.addNewMelody();
          }
     }
-
     public Board getPiano() {
         return piano;
     }
-
     public void Lose(){
     JOptionPane.showMessageDialog(null,"YOU LOSE!!!");
     }
-    
-    public void Win(int Score){
-    JOptionPane.showMessageDialog(null,"YOU WIN!!! "
+    public void Win(int Score, String Mensaje){
+    JOptionPane.showMessageDialog(null,Mensaje
             + "Your Score : " + Score);
     }
     public void actualizarPantalla(int a, int b, int i,int c){
@@ -140,7 +147,6 @@ public class Applet extends JFrame implements ActionListener{
         }
         this.Nivel.setText("NIVEL : "+c);
     }
-
     public void newSolicitud(String Mensaje){
        String[] A = {"Piano","Teclado","Cancelar"};
       String [] a = new String[2];
@@ -164,14 +170,23 @@ public class Applet extends JFrame implements ActionListener{
     }
     this.OutPut = a;
     }
-
+    public void newLabel(String Mensaje){
+    String string = new String ();
+    string = JOptionPane.showInputDialog(null, Mensaje);
+    this.OutPut1 = string;
+    }
     public String[] getOutPut() {
         return OutPut;
     }
     public void ContinueGame(){
     this.menuss.add(this.option);
     }
-    
+    public void ContinueGame2(){
+    this.menuss.add(this.option2);
+    }
+    public int getOutPut1(){
+    return Integer.parseInt(this.OutPut1);
+    }
 
 }
 

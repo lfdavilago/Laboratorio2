@@ -12,6 +12,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 /**
@@ -21,30 +22,44 @@ import java.util.ArrayList;
 public class SongWriter 
 {
 
-    public SongWriter() 
-    {
-        copiaString("melodias.txt", "output3.txt");
+    public SongWriter() {
+       
     }
     
     
-    public void escribirString( ArrayList<String> arreglo, String outputName )
-    {
+    public void escribirString( ArrayList<String> arreglo, String outputName, int i ){
         FileWriter outputStream = null;
         try 
         {
             outputStream = new FileWriter(outputName);
+            outputStream.write(i + ",");
             for (String elemento : arreglo) 
-            {
+            {   System.out.println("WRITING");
                 outputStream.write(elemento + ",");
+            }
+            if(outputStream!=null){
+            outputStream.close();
             }
         }catch(IOException e)
         {
             e.printStackTrace();
         }
     }
+    public void EditarArchivo(String name, ArrayList<String> Melodia) throws IOException{
+    FileWriter f = null;
+    PrintWriter p = null;
+    f = new FileWriter(name,true);
+    p = new PrintWriter(f);
+    p.println();
+    p.print(Melodia.size()+",");
+    for(String d : Melodia){
+    p.print(d+",");}
     
-    public void copiarArchivo(String fileName, String outputName) throws IOException
-    {
+    if(f !=null){
+    f.close();
+    }
+    }    
+    public void copiarArchivo(String fileName, String outputName) throws IOException{
         FileReader inputStream = null;
         FileWriter outputStream = null;
         try 
@@ -69,16 +84,12 @@ public class SongWriter
         }
             
     }
-    
-    public void escribirTexto(String text, String destinationFile) throws IOException
-    {
+    public void escribirTexto(String text, String destinationFile) throws IOException{
         FileWriter fw = new FileWriter(destinationFile);
         fw.write(text);
         fw.close();
     }
-    
-    public void copiaString(String nameFile, String outputName)
-    {
+    public void copiaString(String nameFile, String outputName){
         File archivo = new File (nameFile);
         String input;
         
@@ -107,12 +118,6 @@ public class SongWriter
             e.printStackTrace();
         }
         
-    }
-    
-    
-    public static void main(String[] args)
-    {
-        new SongWriter();
     }
     
 }

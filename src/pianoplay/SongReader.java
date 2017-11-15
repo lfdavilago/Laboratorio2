@@ -18,8 +18,7 @@ import java.net.MalformedURLException;
  */
 public class SongReader 
 {
-    public ArrayList<Nota> leerPartitura(String nombreArchivo)
-    {    
+    public ArrayList<Nota> leerPartitura(String nombreArchivo){    
         File information = new File(nombreArchivo);
         ArrayList<Nota> notas = new ArrayList<>();
         try
@@ -45,10 +44,7 @@ public class SongReader
         
         
     }
-    // Esta Clase debe tener todas las funciones necesarias para leer y reproducir una melodia guardada
-    // Ejemplo;
-    // void LeerPartitura();
-    // void Reproduccir();
+  
     public ArrayList<Nota> readMelody(String nombreArchivo,int i){
     
      File information = new File(nombreArchivo);
@@ -62,7 +58,7 @@ public class SongReader
             int b = 0;
             while(a==0){
            
-                System.out.println("aaaaaaaaaaa");
+              System.out.println("aaaaaaaaaaa");
        
               b = input.nextInt();
             if(b == i){
@@ -88,12 +84,10 @@ public class SongReader
         {
             e.printStackTrace();
         }
-        return notas;
-        
+        return notas; 
     }  
     
-    public ArrayList<Nota> leerMelodia(String nombreArchivo, int nivel)
-    {
+    public ArrayList<Nota> leerMelodia(String nombreArchivo, int nivel){
         File information = new File(nombreArchivo);
         ArrayList<Nota> melodiaResultante = new ArrayList<>();
         try
@@ -127,16 +121,5 @@ public class SongReader
         }
         return null;
     }
-//    public static void main(String[] args){
-//    
-//    ArrayList<Nota> Melodia = new ArrayList<>();
-//    
-//    SongReader g = new SongReader();
-//    Melodia = g.leerMelodia("Mpredeterminadas.txt", 1);
-//   // Melodia = g.readMelody("Mplay.txt", 4) ;
-//    for(Nota a : Melodia){
-//        System.out.println(""+a.getNombre());
-//    }
-//    
-//    }
+
 }

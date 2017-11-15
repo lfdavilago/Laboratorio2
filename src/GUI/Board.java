@@ -75,12 +75,12 @@ public class Board extends JPanel implements MouseListener{
             if(cont == 4){Nota = "G";}
             if(cont == 5){Nota = "A";}
             if(cont == 6){Nota = "B";}
-        this.piano.getTecla(Nota).getNota().getSonido().play();
+        this.piano.getTecla(Nota).Push();
       
-        for(String p : this.piano.getMemoriaVolatil()){
+        for(String p : this.piano.getMemoriaVolatil()){  /// BORRAR
             System.out.print("                   "+p);
         }
-            System.out.println("");
+            System.out.println("");// BORRAR
         this.cantidad ++;
         }
         cont ++;
