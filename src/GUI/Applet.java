@@ -97,7 +97,6 @@ public class Applet extends JFrame implements ActionListener{
     public void actionPerformed(ActionEvent ae) {
        Container f = this.getContentPane();
        if(ae.getSource() == this.Menu || ae.getSource() == this.option){
-           System.out.println("JUGAR CON LA MAQUINA");
            try {
                logic.PvsPc(new SongReader());
 
@@ -106,8 +105,7 @@ public class Applet extends JFrame implements ActionListener{
            }
        }
         if(ae.getSource() == this.menu2 || ae.getSource() == this.option2){
-            System.out.println("JUGAR CON OTRO JUGADOR");  
-    
+         
            try {
                
                this.logic.pMplayer(new SongReader());
@@ -118,12 +116,12 @@ public class Applet extends JFrame implements ActionListener{
             
        }
          if(ae.getSource() == this.menu3){
-             System.out.println("SALIR");
+       
        }
          
          if(ae.getSource() == this.menu4){
              
-             System.out.println("addMelodia");
+          
   
                logic.addNewMelody();
          }
