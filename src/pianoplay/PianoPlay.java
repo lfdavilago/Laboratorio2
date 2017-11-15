@@ -38,14 +38,9 @@ public class PianoPlay{
                 Logger.getLogger(PianoPlay.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-
         Applet ex;
         ex = new Applet();
         ex.setVisible(true);
     }
-
-  
-
-
 }
 

@@ -23,18 +23,18 @@ import javax.swing.JPanel;
  * @author acer
  */
 public class Board extends JPanel implements MouseListener{
-
+    // Atributos
     private Piano piano;
     private int cantidad;
+    // Constructor
     public Board() throws MalformedURLException{
     piano = new Piano();
     this.addMouseListener(this);
     this.cantidad = 0;
     }
-    
-    
-      @Override
-      public void paintComponent(Graphics g) {
+    // Metodos
+    @Override
+    public void paintComponent(Graphics g) {
         super.paintComponent(g);
         
         dibujarPiano(g);

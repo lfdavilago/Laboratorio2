@@ -34,6 +34,7 @@ public class Logic extends Thread implements ActionListener{
    private int fallos;
    private int cont;
    private int Nivel;
+   private int niveles;
    private Timer time2; 
    // Constructor
    public Logic(Board board, Applet a){
@@ -108,8 +109,7 @@ public class Logic extends Thread implements ActionListener{
 
        @Override
        public void actionPerformed(ActionEvent ae) {
-          
-           System.out.println("Stado: "+board.getCantidad()+"   "+jugada);
+      
     Tiempo++;
     if(board.getCantidad() > 0){
     if(board.getCantidad() == jugada){
@@ -123,32 +123,28 @@ public class Logic extends Thread implements ActionListener{
     }
     if(Tiempo == 800){
     time.stop();
-        System.out.println("SE ACABO EL TIEMPO");
         resetDataGame();
         aplet.Lose();
     }
     }
        }
    });
-//   this.time.start();
+
    }
 
    public void analizarSecuencia(ArrayList<Nota> Partitura) throws InterruptedException{
       
        SongReader g = new SongReader();
-     //  ArrayList<Nota> Partitura = g.leerMelodia("Mpredeterminadas.txt", this.Nivel);
-        System.out.println(""+Partitura.size());////BORRARR!!!!!!
-       
+     
        String a = this.board.getPiano().getMemoriaVolatil().get(this.board.getPiano().getMemoriaVolatil().size()-1);
        String b = Partitura.get(this.board.getPiano().getMemoriaVolatil().size()).getNombre();
            
        if(a.equals(b)){
-           System.out.println("MUY BIEN"); /// BORRAR!!!!!!!
-           
+      
            this.aplet.actualizarPantalla(0, this.contScore(cont),0,this.Nivel);
            this.cont = 0;
            if(this.board.getPiano().getMemoriaVolatil().size() == Partitura.size()-1){
-               System.out.println("Jsixe"+this.Jugadores.size());///BORRARRR!!!!!!!!!!!
+              
            for(Jugador x : this.Jugadores){
                if(x.isTurno()){
            this.aplet.Win(x.getScore(),"YOU WIN!!!,");
@@ -163,13 +159,13 @@ public class Logic extends Thread implements ActionListener{
            if(this.Jugadores.size() == 2){
            this.aplet.ContinueGame2();
            }
-           System.out.println("congratulations");////BORRARRR!!!!!!!!
+      
            }
           
        }else{
        this.fallos++;
        this.cont++;
-           System.out.println("ERROR DE NOTA"); /// BORRARRR!!!!!!!!
+        
            this.board.getPiano().setMemoriaVolatil(a);
            
            for(Jugador e : this.Jugadores){
@@ -260,19 +256,18 @@ public class Logic extends Thread implements ActionListener{
                 if(aplet.getOutPut()[1] == "0"){
                 ArrayList<String> Melodia = new ArrayList();
         int i = Integer.parseInt(aplet.getOutPut()[0]);
-        System.out.println("START " + i + " " + board.getPiano().getMemoriaVolatil().size());
+      
         if(board.getPiano().getMemoriaVolatil().size() == i){
         
             Melodia = board.getPiano().getMemoriaVolatil();
             SongWriter e = new SongWriter();
                     try {
-                        // e.escribirString(Melodia, "Mplay.txt",i);
+                       
                         e.EditarArchivo("Mpredeterminadas.txt", Melodia);
                     } catch (IOException ex) {
                         Logger.getLogger(Logic.class.getName()).log(Level.SEVERE, null, ex);
                     }
-            for(String a : Melodia){
-            System.out.println(""+ a);}
+      
             
             board.getPiano().cleanMemoriaVolatil();
             time2.stop();
@@ -318,7 +313,7 @@ public class Logic extends Thread implements ActionListener{
         if(board.getPiano().getMemoriaVolatil().size() == i){
             ArrayList<String> Melodia = new ArrayList<>();
             Melodia = board.getPiano().getMemoriaVolatil();
-        for(String a : Melodia){System.out.print(""+a);} // BorrAR!!!!!!
+            
         SongWriter e = new SongWriter();
             e.escribirString(Melodia, "Mplay.txt",i);
             ArrayList<Nota> a = new ArrayList<>();

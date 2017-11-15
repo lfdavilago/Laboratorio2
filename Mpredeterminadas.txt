@@ -4,3 +4,5 @@
 4,E,F,G,D,
 5,C,D,E,F,G,
 6,F,D,E,A,G,C,
+7,D,E,F,G,B,A,D,
+8,C,E,F,G,B,A,D,E,
